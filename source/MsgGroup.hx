@@ -10,6 +10,7 @@ import flixel.group.FlxSpriteGroup;
 class MsgGroup extends FlxSpriteGroup 
 {
 	private var messages:FlxTypedSpriteGroup<Message>;
+	public var msgOffsetY:Float = 10;
 
 	public function new(X:Float=0, Y:Float=0) 
 	{
@@ -28,7 +29,7 @@ class MsgGroup extends FlxSpriteGroup
 	{
 		messages.forEachAlive(function(spr:FlxSprite)
 		{
-			remove(spr, true);
+			spr.y -= msgOffsetY;
 		});
 	}
 	
