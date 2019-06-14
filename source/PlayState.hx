@@ -49,13 +49,13 @@ class PlayState extends FlxState
 		
 		if (txtInput.hasFocus && FlxG.keys.justPressed.ENTER)
 		{
-			mess.addMessage(new Message(0, 0, "ninjamuffin99", txtInput.text, FlxG.random.getObject(twitchColors)));
+			mess.addMessage(new Message(8, 0, "ninjamuffin99", txtInput.text, FlxG.random.getObject(twitchColors), true));
 
 			txtInput.text = "";
 			txtInput.caretIndex = 0;
 		}
 
-		if (FlxG.random.bool(5))
+		if (FlxG.random.bool(3.5))
 		{
 			var curChat:Int = FlxG.random.weightedPick([70, 4, 70]);
 			var curUsername:String = ChatLogs.users[FlxG.random.int(0, ChatLogs.users.length)];
