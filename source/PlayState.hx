@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.ui.FlxInputText;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText.FlxTextFormat;
@@ -9,6 +10,7 @@ import flixel.util.FlxColor;
 class PlayState extends FlxState
 {
 	private var mess:MsgGroup;
+	private var txtInput:FlxInputText;
 	
 	private var twitchColors:Array<FlxColor> =
 	[
@@ -31,8 +33,12 @@ class PlayState extends FlxState
 	
 	override public function create():Void
 	{
-		mess = new MsgGroup(0, FlxG.height - 20);
+		mess = new MsgGroup(25, FlxG.height - 70);
 		add(mess);
+
+		txtInput = new FlxInputText(25, FlxG.height - 55, 300);
+		txtInput.height *= 2;
+		add(txtInput);
 		
 		super.create();
 	}
@@ -41,6 +47,14 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 		
+		if (txtInput.hasFocus && FlxG.keys.justPressed.ENTER)
+		{
+			mess.addMessage(new Message(0, 0, "ninjamuffin99", txtInput.text, FlxG.random.getObject(twitchColors)));
+
+			txtInput.text = "";
+			txtInput.caretIndex = 0;
+		}
+
 		if (FlxG.random.bool(5))
 		{
 			var curChat:Int = FlxG.random.weightedPick([70, 4, 70]);
